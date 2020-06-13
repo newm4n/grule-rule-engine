@@ -17,13 +17,13 @@ __"Gopher Holds The Rules"__
 import "github.com/hyperjumptech/grule-rule-engine"
 ```
 
-## Rule Engine for Go
+## Rule Engine untuk Go
 
-**Grule** is a Rule Engine library for the Golang programming language. Inspired by the acclaimed JBOSS Drools, done in a much simple manner.
+**Grule** adalah sebuah pustaka perangkat lunak berupa *Rule Engine* untuk bahasa pemrograman Golang. Di-inspirasi dari JBOSS Drools yang terkenal, tapi dibuat dengan lebih sederhana.
 
-Like **Drools**, **Grule** have its own *DSL* comparable as follows.
+Seperti halnya **Drools**, **Grule** memiliki *DSL*-nya sendiri yang perbandingannya seperti berikut.
 
-Drools's DRL be like :
+DRL dari Drools seperti :
 
 ```drool
 rule "SpeedUp"
@@ -39,7 +39,7 @@ rule "SpeedUp"
 end
 ```
 
-And Grule's GRL be like :
+Dan DRL dari Grule akan seperti :
 
 ```go
 rule SpeedUp "When testcar is speeding up we keep increase the speed." salience 10  {
@@ -51,38 +51,38 @@ rule SpeedUp "When testcar is speeding up we keep increase the speed." salience 
 }
 ```
 
-# What is RuleEngine
+# Apa itu RuleEngine
 
-There isn't a better explanation than the article authored by Martin Fowler. You can read the article here ([RulesEngine by Martin Fowler](https://martinfowler.com/bliki/RulesEngine.html)).
+Tidak ada penjelasan yang lebih baik dari sebuah artikel yang ditulis oleh Martin Fowler. Anda dapat membaca artikelnya disini ([RulesEngine by Martin Fowler](https://martinfowler.com/bliki/RulesEngine.html)).
 
-Taken from **TutorialsPoint** website (with slight modifications),
+Diambil dari situs **TutorialsPoint** (dengan sedikit modifikasi),
 
-**Grule** Rule Engine is a Production Rule System that uses the rule-based approach to implement an Expert System. Expert Systems are knowledge-based systems that use knowledge representations to process acquired knowledge into a knowledge base that can be used for reasoning.
+**Grule** Rule Engine adalah sebuah *Production Rule* System yang menggunakan pendekatan berbasis *rule* untuk membuat sebuah *System Pakar*. System Pakar menggunakan sebuah system berdasarkan *pengetahuan*  dimana sistem ini akan memproses sebua representasi *pengetahuan* dan menambahkannya kedalam kumpulan basis pengetahuan didalamnya. Basis pengetahuan ini dapat dipergunakan untuk membuat *reasoning*.
 
-A Production Rule System is Turing complete with a focus on knowledge representation to express propositional and first-order logic in a concise, non-ambiguous and declarative manner.
+Sebuah sistem *Production Rule* adalah *Turing Complete* yang ber-fokus pada representasi *pengetahuan* untuk menggambarkan logika yang proporsional dan logika *first-order* secara lengkap, jelas dan deklaratif.
 
-The brain of a Production Rules System is an *Inference Engine* that can scale to a large number of rules and facts. The Inference Engine matches facts and data against Production Rules – also called **Productions** or just **Rules** – to infer conclusions which result in actions.
+Otak dari sebuah sistem *Production Rules* adalah sebuah mesin *Inference* yang dapat terbentuk dari sejumlah besar *rule* dan *fakta*. Mesin *Inference* akan mencocokan fakta dan data terhadap sekumpul *rule* untuk menentukan tidakan apa yang akan dilakukan berikutnya.
 
-A Production Rule is a two-part structure that uses first-order logic for reasoning over knowledge representation. A business rule engine is a software system that executes one or more business rules in a runtime production environment.
+*Production Rule* adalah sebuah struktur yang terdiri dari dua bagian yang menggunakan logika *first-order* untuk mekanisme penentuan didalam representasi *pengetahuan*. Sebuah *business rule engine* adalah perangkat lunak yang menjalan satu atau lebih *business rule* dalam sebuah lingkungan *production*.
 
-A Rule Engine allows you to define **“What to Do”** and not **“How to do it.”**
+*Rule Engine* mengizinkan anda untuk mendefinisikan **“Apa yang harus dilakukan”** dan bukan **“Bagaimana melakukannya.”**
 
-## What is a Rule
+## Apa itu Rule
 
-*(also taken from TutorialsPoint)*
+*(juga diambil dari TutorialsPoint)*
 
-Rules are pieces of knowledge often expressed as, "When some conditions occur, then do some tasks."
+Rules adalah sebuah pengetahuan yang ditulis dalam bentuk "Saat (when) sebuah kondisi terjadi, Maka (then) lakukan sesuatu"
 
-```go
+```grule
 When
    <Condition is true>
 Then
    <Take desired Action>
 ```
 
-The most important part of a Rule is its when part. If the **when** part is satisfied, the **then** part is triggered.
+Bagian terpenting dalam sebuah Rule adalah pada bagian **when** nya. Jika bagian **when** terpenuhi, maka pagian **then** akan dieksekusi.
 
-```go
+```grule
 rule  <rule_name> <rule_description>
    <attribute> <value> {
    when
@@ -93,41 +93,41 @@ rule  <rule_name> <rule_description>
 }
 ```
 
-## Advantages of a Rule Engine
+## Keuntungan dari Rule Engine
 
-### Declarative Programming
+### Pemrograman Deklaratif
 
-Rules make it easy to express solutions to difficult problems and get the verifications as well. Unlike codes, Rules are written with less complex language; Business Analysts can easily read and verify a set of rules.
+*Rules* mempermudah untuk mengekspresikan sebuah solusi untuk permasalahan uyang sulit dan juga mendapakan verifikasinya. Berbeda dengan kode program, *Rule* ditulis menggunakan bahasa yang sederhana; Bisnis analis dapat dengan mudah membaca dan memverifikasi sekumpulan *Rule*
 
-### Logic and Data Separation
+### Pemisahan antara Logika dan Data
 
-The data resides in the Domain Objects and the business logic resides in the Rules. Depending upon the kind of project, this kind of separation can be very advantageous.
+Data berada didalam *Domain Object* sementara logika bisnis akan berada didalam sekumpulan *Rule*. Tergantung dari jenis proyeknya, pemisahan ini akan sangat menguntungkan.
 
-### Centralization of Knowledge
+### Sentralisasi pengetahuan
 
-By using Rules, you create a repository of knowledge (a knowledge base) which is executable. It is a single point of truth for business policy. Ideally, Rules are so readable that they can also serve as documentation.
+Dengan menggunakan *Rule*, anda membuat sebuah penyimpanan pengetahuan (*knowledge base*). Penyimpanan ini menjadi sumber kebenaran atas aturan-aturan bisnis. Idealnya, aturan ini sangat mudah dibaca dan menjadikannya sebagai dokumentasi tersendiri.
 
-### Agility To Change
+### Kemudahan adaptasi terhadap perubahan
 
-Since business rules are actually treated as data. Adjusting the rule according to business dynamic nature become trivial. No need to re-build codes, deploy as normal software development do, you only need to roll out sets of rule and apply them to knowledge repository.
+Karea aturan bisnis ini sebenarnya diperlakukan sebagai data. Mengubah aturan untuk menyusaikan dinamika bisnis menjadi mudah. Tidak perlu membangun ulang kode program atau melakukan *deployment* sebagaimana proses pembangunan perangkat lunak biasanya, yang perlu anda lakukan hanya melepas sekumpulan aturan dan memasukannya kedalam  penyimpanan *Rule*.
 
-### Docs
+### Dokumentasi
 
-* [Tutorial](Tutorial_id.md). Follow this simple tutorial to use Grule ASAP
-* [Rule Engine](RuleEngine_id.md). For those who want to know how Rule Engine works
-* [GRL](GRL_id.md). A bit more in-depth about GRL structures and syntax.
-* [RETE Algorithm](RETE_id.md). Explain how RETE algorithm implemented in Grule.
-* [Functions](Function_id.md). List of built-in function and how to to call your own function from GRL.
-* [Grule Events](GruleEvent_id.md). Grule's internal event bus. If you interested to listen to Grule rule events.
+* [Tutorial](Tutorial_id.md). Ikuti *tutorial* ini untui bisa menggunakan Grule secepatnya.
+* [Rule Engine](RuleEngine_id.md). Bagi mereka yang ingin mengetahui bagaimana sebuah *Rule Engine* bekerja.
+* [GRL](GRL_id.md). Lebih dalam kedalam struktur GRL dan syntax nya.
+* [RETE Algorithm](RETE_id.md). Menjelaskan bagaiman algoritma *RETE* diimplementasikan dalam Grule.
+* [Functions](Function_id.md). Daftar fungsi-fungsi yang ada didalam Grule dan bagaimana anda bisa memanggil fungsi anda sendiri di GRL.
+* [Grule Events](GruleEvent_id.md). *Event Bus* internal Grule. Jika anda tertarik untuk menangkap kejadian (event) dalam Grule.
 
-# Tasks and Help Wanted
+# Bantuan diharapkan
 
-Yes. We need contributors to make Grule even better and useful to the Open Source Community.
+Ya, kami membutuhkan kontributor-kontributor untuk menjadikan Grule lebih baik dan berguna bagi komunitas Open Source.
 
-* Need to do more and more and more tests.
-* Better code coverage test.
-* Better commenting for go doc best practice.
-* Improve function argument handling to be more fluid and intuitive.
+* Perlu lebih banyak test.
+* Perlu *code coverage* lebih baik.
+* Memperbaikin *commenting* sesuai dengan *best practice*.
+* Mempergaiki penanganan *argumen* fungsi agar lebih "cair" dan intuitif.
 
-If you really want to help us, simply `Fork` the project and apply for Pull Request.
-Please read our [Contribution Manual](../CONTRIBUTING.md) and [Code of Conduct](../CODE_OF_CONDUCTS.md)
+Jika anda benar-benar membantu kami, silahkan `Fork` proyek ini dan melakukan *Pull Request*
+Mohon baca [Contribution Manual](../CONTRIBUTING.md) dan [Code of Conduct](../CODE_OF_CONDUCTS.md)
