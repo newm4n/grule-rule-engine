@@ -10,6 +10,9 @@ __"Gopher Holds The Rules"__
 
 # Grule-Rule-Engine
 
+[![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine)
+[![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine/docs/README_id)
+
 ```go
 import "github.com/hyperjumptech/grule-rule-engine"
 ```
