@@ -9,7 +9,7 @@
 __"Gopher Holds The Rules"__
 
 [![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine)
-[![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine/docs/README_id.md)
+[![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](https://github.com/newm4n/grule-rule-engine/blob/chore/i18n-id/docs/README_id.md)
 
 # Grule
 
@@ -130,4 +130,4 @@ Yes. We need contributors to make Grule even better and useful to the Open Sourc
 * Improve function argument handling to be more fluid and intuitive.
 
 If you really want to help us, simply `Fork` the project and apply for Pull Request.
-Please read our [Contribution Manual](https://github.com/hyperjumptech/grule-rule-engine/CONTRIBUTING.md) and [Code of Conduct](https://github.com/hyperjumptech/grule-rule-engine/CODE_OF_CONDUCTS.md)
+Please read our [Contribution Manual](../CONTRIBUTING.md) and [Code of Conduct](../CODE_OF_CONDUCTS.md)
