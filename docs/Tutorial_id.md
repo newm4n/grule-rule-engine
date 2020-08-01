@@ -7,15 +7,15 @@
 
 ## Preparation
 
-Please note that Grule is using Go 1.13
+Mohon dicatat bahwa Grule menggunakan Go 1.13
 
-To import Grule into your project you can simply import it.
+Untuk menggunakan Grule didalam proyek anda, cukup dengan mudah masukannya.
 
 ```text
 $go get github.com/hyperjumptech/grule-rule-engine
 ```
 
-From your `go` you can import Grule.
+Dalam file `.go` anda, 
 
 ```go
 import (
@@ -26,11 +26,11 @@ import (
 ) 
 ``` 
 
-## Creating Fact Structure
+## Membuat struktur fakta
 
-A `fact` in grule is a mere **pointer** to an instance of a `struct`.
-This struct may contains properties like any normal Golang struct, as well
-as `function` or usually, in *OOP*, we call them `method`
+Sebuah `fakta` dalam grule adalah hanya sebuah **pointer** kepada sebua *instance* dari suatu `struktur`
+Struktur ini bisa berisi properti-propert seperti halnya struktur normal golang biasa, dan juga berisi `fungsi`
+atau yang daldam dunia *OOP* disebut juga dengan `method`
 
 ```go
 type MyFact struct {
@@ -44,10 +44,10 @@ type MyFact struct {
 
 ```
 
-Just like normal Golang conventions, only **visible** attributes can be accessible
-from the Grule rule engine, those with capital first letter.
+Seperti cara umum bahasa Golang, hanya atribut-atribut yang *terlihat* saja yang dapat di akses
+dari dalam mesin Grule, hanya atribut dan fungsi yang berawalan huruf besar.
 
-Grule can also call Fact's functions.
+Grule juga dapa memanggil fungsi-fungsi dalam fakta.
 
 ```go
 func (mf *MyFact) GetWhatToSay(sentence string) string {
@@ -55,17 +55,16 @@ func (mf *MyFact) GetWhatToSay(sentence string) string {
 }
 ```
 
-Please note, that there are some conventions.
+Mohon dicatat, ada beberapa persyaratan.
 
-* Member function must be **Visible**, have capital first letter.
-* If the function have returns, there must be only 1 return.
-* Arguments and return, if it is an `int`, `uint` or `float`, must be their 64-bit variant. Eg. `int64`, `uint64`, `float64`.
-* The function are not encouraged to change the Fact's member attribute, this cause RETE's working memory detection impossible.
-If you **MUST** change some variable, you have to notify Grule using `Changed(varname string)` built-in function.
+* Fungsi dalam fakta harus bisa **terlihat**, memiliki huruf besar di awal.
+* Jika fungsinya ada balikan, hanya boleh ada 1 balikan saja.
+* Dalam argumen dan balikan, jika itu adalah `int`, `uint` atau `float`, harus menggunakan varian 64-bit-nya. Seperti `int64`, `uint64`, `float64`.
+* Fungsi yang dipangging tidak disarankan mengubah nilai data dari atribut-atribut dalam fakta, ini menyebabkan deteksi RETE pada *working memory* menjadi mustahil. Jika anda tetap **HARUS** merubah beberapa atribut, anda harus memberitahu Grule menggunakan fungsi `Changed(varname string)` yang sudah disiapkan.
 
-## Add Fact Into DataContext
+## Menambahkan Fakta kedalam DataContext
 
-To add a fact into `DataContext` you have to create an instance of your `fact`
+Untui menambahkan fakta kedalam *DataContext* anda harus membuat sebuah *instance* dari `fakta` anda.
 
 ```go
 myFact := &MyFact{
@@ -77,9 +76,9 @@ myFact := &MyFact{
 }
 ```
 
-You can create as many fact as you wish.
+Anda bisa membuat banyak fakta sesuai kebutuhan anda.
 
-Next, you have to prepare a `DataContext` and add your instance(s) of facts into it.
+Berikutnya, anda hendak menyiapkan `DataContext` dan menambahkan `instance` fakta anda kedalamnya.
 
 ```go
 dataCtx := ast.NewDataContext()
@@ -89,27 +88,27 @@ if err != nil {
 }
 ```
 
-## Creating KnowledgeLibrary and Add Rules Into It
+## Membuat pustaka KnowledgeLibrary dan memasukan Rule kedalamnya.
 
-A `KnowledgeLibrary` is basically collection of `KnowledgeBase` blue prints. 
-And `KnowledgeBase` is a collection of many rules sourced from rule definitions
-loaded from multiple sources.
-We use `RuleBuilder` to build `KnowledgeBase` and add it into `KnowledgeLibrary`
+Pada dasarnya, `KnowledgeLibrary` adalah sebuah pustaka berisi kumpulan cetak-biru `KnowledgeBase`. 
+Dan `KnowledgeBase` adalah kumpulan dari banyak *rule* yang berasal dari kumpulan definisi (GRL)
+yang diambil dari banyak sumber.
+Kita menggunakan `RuleBuilder` untuk membangun `KnowledgeBase` dan menambahkannya kedalam `KnowledgeLibrary`
 
-The DRL, can be in the form of simple string, stored in a file or somewhere from the internet can each be
-used to build those rules.
+Sebuah DRL, bisa dibuat dari sebuah string sederhana, disimpan didalam file atau tersimpan di suatu tempat di internet.
+DRL ini digunakan untuk membangun satu atau lebih *rule*
 
-Now lets create the `KnowledgeLibrary` and `RuleBuilder` to build the rule into prepared `KnowledgeLibrary`
+Sekarang, mari kita buat `KnowledgeLibrary` dan `RuleBuilder` untuk membangun *rule* kedalam `KnowledgeLibrary` yang sudah disiapkan.
 
 ```go
 knowledgeLibrary := ast.NewKnowledgeLibrary()
 ruleBuilder := builder.NewRuleBuilder(knowledgeLibrary)
 ```
 
-Now we can add rules (defined within a GRL)
+Sekaran kita bisa menambahkan sebuah *rule* (didefinisikan dalam GRL)
 
 ```go
-// lets prepare a rule definition
+// mari kita siapkan sebuah definisi rule
 drls := `
 rule CheckValues "Check the default values" salience 10 {
     when 
@@ -120,7 +119,7 @@ rule CheckValues "Check the default values" salience 10 {
 }
 `
 
-// Add the rule definition above into the library and name it 'TutorialRules'  version '0.0.1'
+// Tambahkan definisi diatas kedalam pustakan dan kita namakan 'TutorialRules'  dengan versi '0.0.1'
 byteArr := pkg.NewBytesResource([]byte(drls))
 err := ruleBuilder.BuildRuleFromResource("TutorialRules", "0.0.1", byteArr)
 if err != nil {
@@ -128,11 +127,11 @@ if err != nil {
 }
 ```
 
-### Resources
+### Sumber
 
-You can always load a GRL from multiple sources.
+Anda dapat memuat GRL dari berbagai dan banyak sumber.
 
-#### From File
+#### Dari File
 
 ```go
 fileRes := pkg.NewFileResource("/path/to/rules.grl")
@@ -142,7 +141,7 @@ if err != nil {
 }
 ```
 
-or if you want to get file resource by their pattern
+atau jika anda inginkan anda bisa memuat dari sumber file dengan pola
 
 ```go
 bundle := pkg.NewFileResourceBundle("/path/to/grls", "/path/to/grls/**/*.grl")
@@ -155,7 +154,7 @@ for _, res := range resources {
 }
 ```
 
-#### From String or ByteArray
+#### Dari String atau ByteArray
 
 ```go
 byteArr := pkg.NewBytesResource([]byte(rules))
@@ -165,7 +164,7 @@ if err != nil {
 }
 ```
 
-#### From URL
+#### Dari URL
 
 ```go
 urlRes := pkg.NewUrlResource("http://host.com/path/to/rule.grl")
@@ -175,7 +174,7 @@ if err != nil {
 }
 ```
 
-#### From GIT
+#### Dari GIT
 
 ```go
 bundle := pkg.NewGITResourceBundle("https://github.com/hyperjumptech/grule-rule-engine.git", "/**/*.grl")
@@ -188,21 +187,21 @@ for _, res := range resources {
 }
 ```
 
-Now, in the `KnowledgeLibrary` we have a `KnowledgeBase` named `TutorialRules` with version `0.0.1`. To execute this particular rule, you have to obtain an instance of it from the `KnowledgeLibrary`. This will be explained on the next section.
+Sekarang, didalam `KnowledgeLibrary` kita memiliki sebuah `KnowledgeBase` dengan nama `TutorialRules` dengan versi `0.0.1`. Untuk menjalankan rule ini, anda harus membuat sebuah *instance* dari `KnowledgeBase` ini dan mengambilnya dari `KnowledgeLibrary`. Ini akan dijelaskan dalam sesi berikutnya.
 
-## Executing Grule Rule Engine
+## Menjalankan Mesin Rule Grule
 
-To execute a KnowledgeBase, we need to get an instance of this `KnowledgeBase` from `KnowledgeLibrary` 
+Untuk menjalankan sebuah `KnowledgeBase`, kita perlu membuat sebuah *instance* dari `KnowledgeBase`, diambail dari `KnowledgeLibrary`
 
 ```go
 knowledgeBase := knowledgeLibrary.NewKnowledgeBaseInstance("Tutorial", "0.0.1")
 ```
 
-Each instance you obtained from knowledgeLibrary is a *clone* from the underlying `KnowledgeBase` *blue-print*. Its entirely different instance that makes it *thread-safe* for execution. Each *instance* also carries its own `WorkingMemory`. This is very useful when you want to have a multithreaded execution of rule engine (eg. In a web-server to serve each request using a rule).
+Setiap instance yang anda dapatkan dari `KnowledgeLibrary` adalah *tiruan* dari *cetak-biru* `KnowledgeBase`. Tiruan ini adalah *instance* yang berbeda dan membuat eksekusi terhadapnya bersifat *thread-safe*. Setiap tiruan *instance* ini juga membawa `WorkingMemory`-nya sendiri. Ini sangat berguna jika anda ingin menjalankan banyak eksekusi *multithread* dari rule-engine (contohnya dalam sebuah *web-server* yang melayani setiap permintaan menggunakan mesin rule). 
 
-Its a significant performance improvement boost since you don't have to "recreate" a `KnowledgeBase` from GRL everytime you start another thread. The `KnowledgeLibrary` will clone the `AST` structure of `KnowledgeBase` into a new instance.
+Ini memberikan peningkatan performa yang cukup besar dikarenakan anda tidak perlu membangun ulang `KnowledgeBase` dari GRL setiap kali anda memulai thread baru. `KnowledgeLibrary` akan membuat tiruan dari struktur `AST` dalam cetak biru `KnowledgeBase` kedalam *instance* baru.
 
-Ok, now lets execute the `KnowledgeBase` instance using the prepared `DataContext`.
+Ok, sekarang mari kita jalankan `KnowledgeBase` yang didapat dari `KnowlegeLibrary` dengan menggunakan `DataContext` yang sudah disiapkan.
 
 ```go
 engine = engine.NewGruleEngine()
@@ -212,9 +211,9 @@ if err != nil {
 }
 ```
 
-## Obtaining Result
+## Mengambil Hasil Eksekusi
 
-If you see, on the rule's GRL above,
+Jika anda perhatikan, pada GRL diatas,
 
 ```go
 rule CheckValues "Check the default values" salience 10 {
@@ -226,8 +225,8 @@ rule CheckValues "Check the default values" salience 10 {
 }
 ```
 
-The rule modify attribute `MF.WhatToSay` where this is revering to the `WhatToSay` in the
-`MyFact` struct. So simply access that member variable to get the result.
+Rule ini mengubah atribut `MF.WhatToSay` dimana ini mengacu pada `WhatToSay` dalam struktur `MyFact`.
+Jadi cukup mengakses variable tersebut untuk mengambil hasilnya.
 
 ```go
 fmt.Println(myFact.WhatToSay)
