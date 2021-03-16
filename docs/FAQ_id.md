@@ -1,4 +1,4 @@
-# FAQ
+# Pertanyaan yang sering ditanakan (FAQ)
 
 [![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](FAQ_en.md)
 [![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](FAQ_id.md)
@@ -165,56 +165,57 @@ sebuah __knowledgebase__
    data yang dipergunakan dalam sistem, dan melepaskan anda dari kebutuhan untuk mengimplementasi bagaimana
    sebenarnya evaluasi logika peraturan itu terlaksana, menyebunyikan banyak kompleksitas dari anda.
 
-2. Sistem pemberian Rating atau Skor. For example, a bank system may want to create a "score" for
-   each customer based on the customer's transaction records (facts).  We could
-   see their score change based on how often they interact with the bank, how
-   much money they transfer in and out, how quickly they pay their bills, how
-   much interest they accrue earn for themselves or for the bank, and so on. A
-   rule engine is provided by the developer and the specification of the facts
-   and rules can then be supplied by subject matter experts in the bank's
-   customer business. Decoupling these different teams puts the responsbilities
-   where they should be.
+2. Sistem pemberian Rating atau Skor. Sebagai contoh, sebuah sistem perbankan ingin 
+   memberikan "skor" untuk setiap nasabah berdasarkan rekam jejak transaksi nasabah tersebut (fakta).
+   Kita dapat melihat bagaimana skor nasabah berubah mengikuti seberapa sering mereka berinteraksi
+   dengan bank, berapa bayak dana yang keluar dan masuk kedalam akun nasabah, seberapa cepat dan rajin
+   seorang nasabah membayar tagihan hutang, total pendapatan nasabah dari bunga bank, dan seterusnya.
+   __Rule engine__ di siapkan oleh teknisi IT dan spesifikasi __rule__ dan data disediakan langsung
+   oleh mereka yang lebih mengerti mengenai sistem finansial dan analis keuangan para nasabah.
+   Dengan demikian, menempatkan keahlian dan disiplin ilmu pada orang yang tepat.
 
-3. Computer games. Player status, rewards, penalties, damage, scores and
-   probability systems are many different examples of where rule play a
-   significant part of nearly all computer games. These rules can interact in
-   very complex ways, often times in ways that the developer didn't imagine.
-   Coding these dynamic situations in a scripting language (e.g. LUA) can get
-   quite complex, and a rule engine can help simplify the work tremendously.
+3. Permainan Komputer (games). Status pemain, penghargaan, penalti, penilaian, kerusakan (damage)
+   dan penghitungan probabilitas adalah beberapa dari banyak contoh dimana sebuah sistem __rule__
+   sangat berperan penting pada hampir semua permainan komputer. __Rule-rule__ ini dapat menentukan
+   interaksi dengan mekanisme permainan dengan cara yang sangat rumit, bahkan terlalu rumit sampai diluar
+   imajinasi sang pembuatnya. Membuat peraturan-peraturan dalam permainan yang dinamis bisa saja di
+   lakuan pada pemrograman skrip seperti LUA, namun logika bisa menjadi sangat rumit dan kompleks,
+   dan dengan menggunakan sebuah __rule-engine__ dapat menurunkan kompleksitas cukup besar.
 
-4. Classification systems. This is actually a generalization of the rating
-   system described above.  Using a rule engine, we can classify things such as
-   credit eligibility, bio chemical identification, risk assessment for
-   insurance products, potential security threats, and many more.
+4. Sistem klasifikasi. Ini sebenarnya suatu bentuk umum dari sistem rating yang sudah dijelaskan sebelumnya.
+   Dengan menggunakan __rule-engine__, kita bisa melakukan kalsifikasi terhadap hak tanggungan kredit,
+   identifikasi kimia biologi, kategori resiko atas produk-produk asuransi, potensi resiko keamanan, dan
+   banyak lagi.
 
-5. Advice/Suggestion system. A "rule" is simply another kind of data, which
-   makes it a prime candidate for definition by another program.  This program
-   can be another expert system or artificial intelligence.  Rules can be
-   manipulated by another system in order to deal with new types of facts or
-   newly discovered information about the domain which the rule set is intending
-   to model.
+5. Sistem pemberian saran. Sebuah "rule" sebenarnya adalah suatu bentuk data, dimana
+   sebagai data, ia sendiri bisa merupakan hasil dari program yang lain. Program tersebut bisa jadi sebuah
+   sistem pakar atau kecerdasan tiruan. __Rule__ bisa dibuat dan dimanipulasi oleh program lain 
+   agar secara dinamis mengikuti kondisi-kondisi perubahan fakta yang bersifat dinamis.
 
-There are so many other use-cases that would benefit from the use of
-Rule-Engine. The above cases represent only a small number of the potential. 
+Ada sangat banyak contoh __use-case__ yang lain, yang akan mendapat keuntungan dari penggunaan
+sebuah __Rule-Engine__. Contoh-contoh diatas hanya menunjukan sedikit potensi yang bisa didapat.
 
-However it is important to state that a Rule-Engine not a silver bullet, of
-course.  Many alternatives exist to solve "knowledge" problems in software and
-those should be employed when they are most appropriate. One would not employ a
-rule engine where a simple `if` / `else` branch would suffice, for instance.
+Walaupun demikian, perlu disebutkan bahwa __Rule-Engine__ tentu saja bukan jaminan untuk dapat
+menyelesaikan semua masalah komputasi. Banyak alternatif lain yang memberikan solusi pada seputar
+problem basis pengetahuan "knowledge base" dalam sebuah perangkat lunak, dan solusi-solusi tersebut
+sebaiknya dipergunakan apabila lebih pantas. Contohnya, Seseorang tidak perlu menggunakan __rule-engine__ 
+untuk sebuah masalah sederhana yang bisa dipecahkan dengan sebuah `if` dan `else` saja.
 
-Theres's someting else to note: some rule engine implementations are extremely
-expensive yet many businesses gain so much value from them that the cost of
-running them is easily offset by that value.  For even moderately complex use
-cases, the benefit of a strong rule engine that can decouple teams and tame
-business complexity seems to be quite clear.
+Ada hal lain yang menjadi catatan: Beberapa implementasi __rule engine__ adalah merupakan produk yang
+sangat mahal harganya untuk dibeli atau disewa. Walaupun demikian, banyak bisnis yang mendapatkan
+keuntungan berarti dari menggunakan produk-produk tersebut, dimana dengan menggunakannya, biaya yang
+timbul dengan menggunakan produk-produk tersebut dengan mudah ditutupi dari keuntungan bisnis yang didapat.
+Salah satu keuntungan bisnis yang sangat jelas, dimana penggunaan __Rule-Engine__ yang bisa 
+memutus keterikatan antara developer dan bisnis __user__ mempercepat pembangunan solusi dan 
+melunakkan kompleksitas bisnis itu sendiri.
 
 ---
 
 ## 6. Logging
 
-**Pertanyaan**: Grule's logs are extremely verbose.  Can I turn off Grule's logger?
+**Pertanyaan**: Log yang dihasilakn oleh Grule terlalu banyak dan agak mengganggu. Bagaimana cara mengurangi / mematikan log ini?
 
-**Jawaban**: Yes. You can reduce (or completely stop) Grule's logging by increasing it's log level.
+**Jawaban**: Ya. Anda dapat mengurangi (atau bahkan menghilangkan) log yang dihasilan oleh Grule dengan cara merubah peringkat LOG nya.
 
 ```go
 import (
@@ -226,8 +227,8 @@ import (
 logger.SetLogLevel(logrus.PanicLevel)
 ```
 
-This will set Grule's log to `Panic` level, where it will only emits log when it panicked.
+Cara ini akan membuat Grule hanya mengeluarkan Log apabila iya panik.
 
-Of course, modifying the log level reduces your ability to debug the system so
-we suggest that a higher log level setting only be instituted in production
-environments.
+Tentu saja, mengubah peringkat log ini mengurangi kemampuan anda untuk melakukan debugging,
+karenanya, kami sarankan agar anda meningkatkan peringat log seperti ini hanya pada sistem
+produksi saja (production environment)

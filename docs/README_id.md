@@ -126,8 +126,8 @@ Ya, kami membutuhkan kontributor-kontributor untuk menjadikan Grule lebih baik d
 
 * Perlu lebih banyak test.
 * Perlu *code coverage* lebih baik.
-* Memperbaikin *commenting* sesuai dengan *best practice*.
-* Mempergaiki penanganan *argumen* fungsi agar lebih "cair" dan intuitif.
+* Memperbaiki *commenting* sesuai dengan *best practice*.
+* Memperbaiki penanganan *argumen* fungsi agar lebih "cair" dan intuitif.
 
-Jika anda benar-benar membantu kami, silahkan `Fork` proyek ini dan melakukan *Pull Request*
+Jika anda benar-benar ingin membantu kami, silahkan `Fork` proyek ini dan melakukan *Pull Request*
 Mohon baca [Contribution Manual](../CONTRIBUTING.md) dan [Code of Conduct](../CODE_OF_CONDUCTS.md)
