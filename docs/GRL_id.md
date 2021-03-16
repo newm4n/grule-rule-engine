@@ -3,7 +3,9 @@
 [![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](GRL_en.md)
 [![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](GRL_id.md)
 
-[Tutorial](Tutorial_id.md) | [Rule Engine](RuleEngine_id.md) | [GRL](GRL_id.md) | [RETE Algorithm](RETE_id.md) | [Functions](Function_id.md) | [Grule Events](GruleEvent_id.md) | [FAQ](FAQ_id.md)
+[Tutorial](Tutorial_id.md) | [Rule Engine](RuleEngine_id.md) | [GRL](GRL_id.md) | [GRL JSON](GRL_JSON_id.md) | [RETE Algorithm](RETE_id.md) | [Functions](Function_id.md) | [FAQ](FAQ_id.md) | [Benchmark](Benchmarking_id.md)
+
+---
 
 The **GRL** is a DSL (Domain Specific Language) designed for Grule. It's a simplified language
 to be used for defining rule evaluation criterias and actions to be executed if the criteria(s) are met.
