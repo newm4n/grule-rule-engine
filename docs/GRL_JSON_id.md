@@ -5,6 +5,8 @@
 
 [Tutorial](Tutorial_id.md) | [Rule Engine](RuleEngine_id.md) | [GRL](GRL_id.md) | [GRL JSON](GRL_JSON_id.md) | [RETE Algorithm](RETE_id.md) | [Functions](Function_id.md) | [FAQ](FAQ_id.md) | [Benchmark](Benchmarking_id.md)
 
+{Masih dalam proses penterjemahan}
+
 ---
 
 Grule rules can be represented in JSON form and translated for use by the rule

@@ -1,9 +1,11 @@
-# Introduction to Rule Engine
+# Mengenal Rule Engine
 
 [![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](RuleEngine_en.md)
 [![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](RuleEngine_id.md)
 
 [Tutorial](Tutorial_id.md) | [Rule Engine](RuleEngine_id.md) | [GRL](GRL_id.md) | [GRL JSON](GRL_JSON_id.md) | [RETE Algorithm](RETE_id.md) | [Functions](Function_id.md) | [FAQ](FAQ_id.md) | [Benchmark](Benchmarking_id.md)
+
+{Masih dalam proses penterjemahan}
 
 ---
 

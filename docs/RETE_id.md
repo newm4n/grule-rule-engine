@@ -7,16 +7,21 @@
 
 ---
 
-From Wikipedia : The Rete algorithm (/ˈriːtiː/ REE-tee, /ˈreɪtiː/ RAY-tee, rarely /ˈriːt/ REET, /rɛˈteɪ/ reh-TAY) is a pattern matching algorithm for implementing rule-based systems. The algorithm was developed to efficiently apply many rules or patterns to many objects, or facts, in a knowledge base. It is used to determine which of the system's rules should fire based on its data store, its facts.
+Dari Wikipedia : Algoritma Rette (/ˈriːtiː/ REE-tee, /ˈreɪtiː/ RAY-tee, /ˈriːt/ REET, /rɛˈteɪ/ reh-TAY) adalah algorima pencian pola yang dipergunakan dalam implementasi sistem berasarkan __peraturan__ (__rule__)
+Algoritma ini dibangun untuk dapat secara efektif menjalankan banyak __rule__ atau pola-pola kepada banyak data atau fakta dalam sebuah basis pengetahuan (__knowledgebase__).
+Dengan demikan sebuah implementasi Rete dapat menentukan mana dari sekian banyak rule harus dijalankan bedasarkan
+data dan fakta yang ada.
 
-Some form of the RETE algorithm was implemented in `grule-rule-engine` starting from version `1.1.0`.
-It replaces the __Naive__ approach when evaluating rules to add to `ConflictSet`.
+Beberapa bentuk dari algoritma RETE ini juga diimplementasikan dalam `grule-rule-engine` semenjak versi `1.1.0`
+yang mengantikan pendekatan sebelumnya yang `Naive` saat melakukan evaluasi __rule__ untuk menambahkan rule tersebut kdalam
+`ConflictSet`
 
-`ExpressionAtom` in the DRL are compiled and will not be duplicated within the working memory of the engine.
-This increased the engine performance significantly if you have many rules defined with lots of duplicated expressions
-or lots of heavy function/method calls.
+`ExpressionAtom` dalam DRL dikompilasi dan dipastikan tidak terjadi duplikasi di dalam __working memory__ di dalam Grule. 
+Cara ini mengikatkan kinerja mesin secara berarti terlebih jika ada banyak __rule__ yang tersimpan dan tiap-tiap rule tersebut
+memiliki banyak duplikasi __expression__ atau banyak memiliki fungsi-fungsi yang __berat__.
 
-Grule's RETE implementation don't have `Class` selector as one expression may involve multiple class. For example an expression such as:
+Implementasi RETE pada Grule tidak mengenal __selector__ `Class` karena dalam Grule, sebuah __expression__ bisa 
+berisi definisi dari banyak class. Contohnya, sebuah __expression__ seperti:
 
 ```.go
 when
@@ -25,18 +30,18 @@ then
     ...
 ```
 
-The expression above involve attribute/function result comparison and math operation from 3 different class. This makes
-RETE's class separation of expression token difficult.
+Pada __expression__ diatas, melibatkan atribut dan fungsi yang berasal dari 3 __class__ berbeda.
+Fitur ini menjadikan pemilahan __class__ dalam RETE menjadi rumit.
 
-You can read about RETE algorithm here:
+Anda dapat membaca lebih jauh mengenai algoritma RETE disini:
 
 * https://en.wikipedia.org/wiki/Rete_algorithm
 * https://www.drdobbs.com/architecture-and-design/the-rete-matching-algorithm/184405218
 * https://www.sparklinglogic.com/rete-algorithm-demystified-part-2/ 
 
-### Why Rete Algorithm is necessary
+### Mengapa algoritma RETE perlu dipergunakan
 
-Suppose we have a fact.
+Asumsikan kita memiliki data fakta.
 
 ```go
 type Fact struct {
@@ -48,7 +53,7 @@ func (f *Fact) VeryHeavyAndLongFunction() bool {
 }
 ```
 
-And add the fact to data contest
+Kemudian  fakta tersebut dimasukan kedalam konteks data.
 
 ```go
 f := &Fact{}
@@ -56,7 +61,7 @@ dctx := context.NewDataContext()
 err := dctx.Add("Fact", f)
 ```
 
-And we have DRL like ...
+Kemudian kita juga punya DRL seperti ...
 
 ```go
 rule ... {
@@ -88,15 +93,17 @@ rule ... {
 }
 ```
 
-Executing the DRL above might "kill" the engine because when it tries to choose what rules to execute,
-the engine will call the `Fact.VeryHeavyAndLongFunction` function in every rule's `when` scope.
+Menjalankan DRL diatas bisa saja "membunuh" mesin __rule__ karena ia akan mencoba 
+mengevaluasi dan memanggil setiap `VeryHeavyAndLongFunction` yang ada di dalam skop `When`
+untuk menentukan rule mana yang menjadi kandidat untuk dieksekusi. 
 
-Thus, instead of executing the `Fact.VeryHeavyAndLongFunction` while evaluating each
-rule, Rete algorithm only evaluate them once (one the first encounter with the function), and remember the result
-for the rest of the rules.
+Karenanya, mesin __rule__ tidak menjalankan setiap fungsi `Fact.VeryHeavyAndLongFunction` yang ada
+dalam skrip. Algoritma Rete hanya melakukan evaluasi terhadap satu saja pemanggilan fungsi ini dan mengingat
+hasil panggilan fungsi ini. Jadi saat fungsi ini seharusnya dieksekusi kembali, Rete cukup __mengembalikan__ hasil
+eksekusi yang iya ingat.
 
-The same with `Fact.StringValue`. Rete algorithm will load the value from the object instance and
-remember it. Until it got changed in the `then` scope, as in ...
+Hal yang sama juga untuk `Fact.StringValue`. Algoritma Rete akan memuat nilai dari sebuah variabel dari dalam konteks
+data dan mengingatnya. Hingga variabel tersebut berubah dalam skop `Then`, seperti ..
 
 ```go
 rule ... {
@@ -107,14 +114,14 @@ rule ... {
 }
 ```
 
-### What is inside Grule's Working-Memory
+### Apa isi dari Working-Memory dalam Grule
 
-Grule will try to remember all of the `Expression` defined within rule's `when` scope of all rules
-in the KnowledgeBase.
+Grule akan berusaha mengingat seluruh `Expression` yang di definiskan didalam skop `when` di setiap __rule__ 
 
-First, It will try its best to make sure none of the `v` AST (Abstract Syntax Tree) node get duplicated.
+Pertama, ia akan berusaha agar tidak ada satu pun node AST (Abstract Syntax Tree) yang terduplikasi. 
 
-Second, each of this AST node can only be evaluated once, until it's relevant `variable` get changed. For example :
+Kedua, untuk setiap node AST tersebut hanya boleh di-evaluasi satu kali, hingga elemen variabel didalam node tersebut
+berubah. Seperti :
 
 Boolean Expression :
 
@@ -123,47 +130,48 @@ Boolean Expression :
     Fact.A == Fact.B + Fact.Func(Fact.C) - 20
 ```
 
-This expression will be broken down into the following Expressions.
+__Expression__ ini bisa dipecah menjadi beberapa __expression__.
 
 ```text
-Expression "Fact.A" --> A variable
-Expression "Fact.B" --> A variable
-Expression "Fact.C" --> A variable
-Expression "Fact.Func(Fact.C)"" --> A function containing argument Fact.C
-Expression "20" --> A constant
-Expression "Fact.B + Fact.Func(Fact.C)" --> A math operation contains 2 variable; Fact.B and Fact.C
-Expression "(Fact.B + Fact.Func(Fact.C))" - 20 -- A math operation also contains 2 variable.
+Expression "Fact.A" --> Sebuah variabel
+Expression "Fact.B" --> Sebuah variabel
+Expression "Fact.C" --> Sebuah variabel
+Expression "Fact.Func(Fact.C)"" --> Sebuah fungsi yang memiliki argumen Fact.C
+Expression "20" --> Sebuah konstanta
+Expression "Fact.B + Fact.Func(Fact.C)" --> Sebuah operasi matematika yange berisi 2 variabel; Fact.B dan Fact.C
+Expression "(Fact.B + Fact.Func(Fact.C))" - 20 -- Sebuah operasi matematika yang juga berisi 2 variabel.
 ```
 
-Each of the above Expressions will be remembered for their underlaying values whenever
-they get evaluated for the first time. So subsequent evaluation will not be evaluated
-as their remembered value will immediately returned.
+Setiap dari __expression__ diatas akan diingat nilai yang dimiliki/dihasilkan setiap 
+kali nilai tersebut dimuat pertamakali. Jadi evaluasi berikutnya, fungsi atau variabel tidak akan
+dipanggil atau dimuat ulang karena nilai nya itu sendiri otomatis di kembalikan.
 
-If one of this Variable got altered inside the rule's `then` scope, for example
+Jika satu dari variabel tersebut berubah nilainya dalam skop `then`, sebagai contoh
 
 ```text
     then
         Fact.B = Fact.A * 20
 ```
 
-We can see `Fact.B` value is changed, then all Expression containing `Fact.B` will
-be removed from Working memory:
+Kita lihat `Fact.B` nilainya berubah, maka semua __Ekspression__ yang berisi `Fact.B` akan dihilangkan
+dari __Working Memory__:
 
 ```text
-Expression "Fact.B"
-Expression "Fact.B + Fact.Func(Fact.C)" --> A math operation contains 2 variable; Fact.B and Fact.C
-Expression "(Fact.B + Fact.Func(Fact.C))" - 20 -- A math operation also contains 2 variable. 
+Expression "Fact.B" --> Sebuah variabel
+Expression "Fact.B + Fact.Func(Fact.C)" --> Sebuah operasi matematika yange berisi 2 variabel; Fact.B dan Fact.C
+Expression "(Fact.B + Fact.Func(Fact.C))" - 20 -- Sebuah operasi matematika yang juga berisi 2 variabel.
 ```
 
-This makes those Expression removed from the working memory and get re-evaluated again on the next cycle.
+Untuk __expression__ yang dihilangkan dari __working memory__, nilai mereka akan di re-evaluasi pada siklus berikutnya.
 
-### Known RETE issue with Functions or Methods
+### Masalah yang dihadapi oleh RETE berkenaan dengan fungsi dan __method__
 
-While Grule will try to remember any variable it evaluate within the `when` and `then` scope, if you change
-the variable value from outside the rule engine, for example changed from within a function call,
-Grule won't be able to see this change, thus Grule may mistakenly evaluate a variable which already changed.
+Saat Grule mencoba mengingat nilai variabel yang ia evaluasi dalam skop `when` dan `then`, jika anda mengubah
+nilai mereka dari luar __rule engine__, contohnya merubah nilai-nilai mereka dari dalam pemanggilan fungsi,
+maka Grule tidak dapat "melihat" perubahan nilai ini, karenanya Grule dapat keliru saat mengevaluasi nilai-nilai variabel
+dan fungsi.
 
-Consider the following fact:
+Anggaplah ada __fact__ berikut:
 
 ```go
 type Fact struct {
@@ -175,7 +183,7 @@ func (f *Fact) SetStringValue(newValue string) {
 }
 ```
 
-Then you instantiate your fact and add it into data context
+Kemudian anda masukan __fact__ ini kedalam konteks data
 
 ```go
 f := &Fact{
@@ -185,7 +193,7 @@ dctx := context.NewDataContext()
 err := dctx.Add("Fact", f)
 ```
 
-In your GRL you did something like this
+Dalam GRL, anda melakukan seperti ini
 
 ```go
 rule one "One" {
@@ -207,10 +215,11 @@ rule two "Two" {
 }
 ```
 
-Thus the engine will finish without error, but the expected result, where `Fact.StringValue` should be `Two`
-is not met.
+Maka __rule engine__ akan selesai eksekusi tanpa ada kesalahan, tapi dari hasil yang ada terjadi kesalahan
+dimana `Fact.StringValue` seharusnya `Two` tidak terapai.
 
-To overcome this, you should tell grule if the variable has changed using `Changed` function.
+Untuk mengatasi masalah ini, anda harus memberi "petunjuk" kepada grule bahwa variabel tersebut telah
+berubah nilainya menggunakan fungsi `Changed`.  
 
 ```go
 rule one "One" {

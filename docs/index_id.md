@@ -1,15 +1,11 @@
-
 [![Gopheer Holds The Rule](https://github.com/hyperjumptech/grule-rule-engine/blob/master/gopher-grule.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine/blob/master/gopher-grule.png?raw=true)
-
-[![Build Status](https://travis-ci.org/hyperjumptech/grule-rule-engine.svg?branch=master)](https://travis-ci.org/hyperjumptech/grule-rule-engine)
-[![Build Status](https://circleci.com/gh/hyperjumptech/grule-rule-engine.svg?style=svg)](https://circleci.com/gh/hyperjumptech/grule-rule-engine)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hyperjumptech/grule-rule-engine)](https://goreportcard.com/report/github.com/hyperjumptech/grule-rule-engine)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 __"Gopher Holds The Rules"__
 
-[![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](https://github.com/hyperjumptech/grule-rule-engine)
-[![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](https://github.com/newm4n/grule-rule-engine/blob/chore/i18n-id/docs/README_id.md)
+[![Eng](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/United-Kingdom.png?raw=true)](index.md)
+[![Ind](https://github.com/gosquared/flags/blob/master/flags/flags/flat/24/Indonesia.png?raw=true)](index_id.md)
+
+[Tutorial](Tutorial_id.md) | [Rule Engine](RuleEngine_id.md) | [GRL](GRL_id.md) | [GRL JSON](GRL_JSON_id.md) | [RETE Algorithm](RETE_id.md) | [Functions](Function_id.md) | [FAQ](FAQ_id.md) | [Benchmark](Benchmarking_id.md)
 
 # Grule
 
@@ -111,23 +107,3 @@ Dengan menggunakan *Rule*, anda membuat sebuah penyimpanan pengetahuan (*knowled
 
 Karea aturan bisnis ini sebenarnya diperlakukan sebagai data. Mengubah aturan untuk menyusaikan dinamika bisnis menjadi mudah. Tidak perlu membangun ulang kode program atau melakukan *deployment* sebagaimana proses pembangunan perangkat lunak biasanya, yang perlu anda lakukan hanya melepas sekumpulan aturan dan memasukannya kedalam  penyimpanan *Rule*.
 
-### Dokumentasi
-
-* [Tutorial](Tutorial_id.md). Ikuti *tutorial* ini untui bisa menggunakan Grule secepatnya.
-* [Rule Engine](RuleEngine_id.md). Bagi mereka yang ingin mengetahui bagaimana sebuah *Rule Engine* bekerja.
-* [GRL](GRL_id.md). Lebih dalam kedalam struktur GRL dan syntax nya.
-* [RETE Algorithm](RETE_id.md). Menjelaskan bagaiman algoritma *RETE* diimplementasikan dalam Grule.
-* [Functions](Function_id.md). Daftar fungsi-fungsi yang ada didalam Grule dan bagaimana anda bisa memanggil fungsi anda sendiri di GRL.
-* [Grule Events](GruleEvent_id.md). *Event Bus* internal Grule. Jika anda tertarik untuk menangkap kejadian (event) dalam Grule.
-
-# Bantuan diharapkan
-
-Ya, kami membutuhkan kontributor-kontributor untuk menjadikan Grule lebih baik dan berguna bagi komunitas Open Source.
-
-* Perlu lebih banyak test.
-* Perlu *code coverage* lebih baik.
-* Memperbaiki *commenting* sesuai dengan *best practice*.
-* Memperbaiki penanganan *argumen* fungsi agar lebih "cair" dan intuitif.
-
-Jika anda benar-benar ingin membantu kami, silahkan `Fork` proyek ini dan melakukan *Pull Request*
-Mohon baca [Contribution Manual](../CONTRIBUTING.md) dan [Code of Conduct](../CODE_OF_CONDUCTS.md)
