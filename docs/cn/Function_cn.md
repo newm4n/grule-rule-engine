@@ -830,13 +830,12 @@ rule TrimText "Do something when Fact.Text is 'ABC'" {
 #### Example
 
 ```Shell
-rule MatchStringText "Return true when regex pattern matches the string"  {
+rule MatchStringText "Return true when regex pattern matches the string" {
 	when
-	  Fact.Text.MatchString("B([a-z]+)ck")
+	  Fact.Text.MatchString("B([az]+)ck")
 	then
 	  Fact.DoSomething();
 }
-```
 
 ### array.Len() int
 
